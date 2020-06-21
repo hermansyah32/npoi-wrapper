@@ -1,16 +1,11 @@
 ﻿using NPOIWrapper.Excel;
-using NPOIWrapper.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NPOIWrapper
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -37,12 +32,10 @@ namespace NPOIWrapper
                 xlsxWrapper.GetSheet().Cell("A2", true).SetValue("Ini text keduanya");
                 xlsxWrapper.SaveAs("Tes Excel 2007 Edited.xlsx");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Something wrong with the code");
             }
-
-
         }
     }
 }

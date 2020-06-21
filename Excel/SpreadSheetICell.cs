@@ -1,10 +1,6 @@
 ﻿using NPOI.SS.UserModel;
 using NPOIWrapper.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NPOIWrapper.Excel
 {
@@ -36,7 +32,8 @@ namespace NPOIWrapper.Excel
                 {
                     return cell.StringCellValue;
                 }
-            }catch(NullReferenceException e)
+            }
+            catch (NullReferenceException e)
             {
                 Logger.Error(e, "GetValue : NullReference");
                 return null;
@@ -189,14 +186,19 @@ namespace NPOIWrapper.Excel
                 {
                     case CellType.String:
                         return cell.StringCellValue;
+
                     case CellType.Numeric:
                         return Convert.ToString(cell.NumericCellValue);
+
                     case CellType.Boolean:
                         return Convert.ToString(cell.BooleanCellValue);
+
                     case CellType.Blank:
                         return "";
+
                     case CellType.Error:
                         return Convert.ToString(cell.ErrorCellValue);
+
                     default:
                         return null;
                 }
@@ -220,7 +222,8 @@ namespace NPOIWrapper.Excel
                 if (cell == null)
                     throw new Exception("null cell");
                 cell.SetCellValue(value);
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "SetValue with value: " + value);
             }

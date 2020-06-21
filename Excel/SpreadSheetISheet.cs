@@ -2,11 +2,6 @@
 using NPOI.SS.Util;
 using NPOIWrapper.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace NPOIWrapper.Excel
 {
@@ -14,11 +9,10 @@ namespace NPOIWrapper.Excel
     {
         private Logger Logger = new Logger("SpreadSheetISheet");
 
-
         private ISheet sheet;
         // TODO: it called indexer
 
-        public SpreadSheetISheet (ISheet sheet)
+        public SpreadSheetISheet(ISheet sheet)
         {
             this.sheet = sheet;
         }
@@ -46,13 +40,12 @@ namespace NPOIWrapper.Excel
                     else
                         throw new Exception("Cell doesn't exists");
                 return new SpreadSheetICell(cell);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "Cell");
                 return new SpreadSheetICell(null);
             }
         }
-
-        
     }
 }

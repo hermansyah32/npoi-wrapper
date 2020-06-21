@@ -1,20 +1,14 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using System;
 using NPOIWrapper.Util;
-using System.Collections.Generic;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NPOIWrapper.Excel
 {
-
     public class SpreadSheetWrapper
     {
-        
         private SpreadSheetType spreadSheetType;
         private IWorkbook workbook;
         private string sourceFile;
@@ -31,6 +25,7 @@ namespace NPOIWrapper.Excel
                 case SpreadSheetType.XLS:
                     workbook = new HSSFWorkbook();
                     break;
+
                 case SpreadSheetType.XLSX:
                     workbook = new XSSFWorkbook();
                     break;
@@ -56,15 +51,18 @@ namespace NPOIWrapper.Excel
                     case ".xls":
                         workbook = new HSSFWorkbook(new FileStream(this.sourceFile, fileMode, fileAccess));
                         break;
+
                     case ".xlsx":
                         workbook = new XSSFWorkbook(this.sourceFile);
                         break;
+
                     default:
                         throw new Exception("Unknown file type");
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                Logger.Error(e, "SpreadSheetWrapper");   
+                Logger.Error(e, "SpreadSheetWrapper");
             }
         }
 
@@ -86,9 +84,11 @@ namespace NPOIWrapper.Excel
                     case ".xls":
                         workbook = new HSSFWorkbook(new FileStream(this.sourceFile, this.fileMode, this.fileAccess));
                         break;
+
                     case ".xlsx":
                         workbook = new XSSFWorkbook(new FileStream(this.sourceFile, this.fileMode, this.fileAccess));
                         break;
+
                     default:
                         throw new Exception("Unknown file type");
                 }
@@ -104,14 +104,15 @@ namespace NPOIWrapper.Excel
             try
             {
                 return new SpreadSheetISheet(workbook.CreateSheet(sheetName));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "CreateSheet");
                 return null;
             }
         }
 
-        public bool IsSheetExist (string sheetName)
+        public bool IsSheetExist(string sheetName)
         {
             try
             {
@@ -119,7 +120,8 @@ namespace NPOIWrapper.Excel
                     return true;
                 else
                     return false;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "IsSheetExist");
                 return false;
@@ -138,7 +140,8 @@ namespace NPOIWrapper.Excel
                 }
                 else
                     return new SpreadSheetISheet(workbook.CreateSheet("Sheet" + Convert.ToString(workbook.NumberOfSheets + 1)));
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "GetSheet");
                 return null;
@@ -187,7 +190,8 @@ namespace NPOIWrapper.Excel
                 FileStream fileStream = new FileStream(sourceFile, FileMode.Create);
                 workbook.Write(fileStream);
                 fileStream.Close();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Logger.Error(e, "Save");
             }

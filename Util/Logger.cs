@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NPOIWrapper.Util
 {
@@ -23,7 +19,7 @@ namespace NPOIWrapper.Util
 
         public void Debug(string message)
         {
-            Log.Debug(methodName + "=>" +  message);
+            Log.Debug(methodName + "=>" + message);
         }
 
         public void Debug(Exception e, string message)
@@ -38,7 +34,7 @@ namespace NPOIWrapper.Util
 
         public void Error(Exception e, string message)
         {
-            Log.Error(e, methodName + "=>" +  message);
+            Log.Error(e, methodName + "=>" + message);
         }
     }
 }
